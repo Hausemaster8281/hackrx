@@ -1,1087 +1,0 @@
-nohup: ignoring input
-INFO:app.services.embedding_service:Initialized FAISS index with dimension 384
-INFO:app.services.llm_service:Gemini client initialized with model: gemini-1.5-flash
-INFO:     Started server process [36205]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-INFO:     127.0.0.1:56726 - "GET /health HTTP/1.1" 200 OK
-INFO:app.main:Processing query request with 3 questions
-INFO:app.services.query_engine:Starting query processing for 3 questions
-INFO:app.services.query_engine:Processing new document
-INFO:app.services.document_processor:Processing document from URL: https://hackrx.blob.core.windows.net/assets/policy.pdf?sv=2023-01-03&st=2025-07-04T09%3A11%3A24Z&se=2027-07-05T09%3A11%3A00Z&sr=b&sp=r&sig=N4a9OU0w0QXO6AOIBiu4bpl7AXvEZogeT%2FjUHNO7HzQ%3D
-INFO:httpx:HTTP Request: GET https://hackrx.blob.core.windows.net/assets/policy.pdf?sv=2023-01-03&st=2025-07-04T09%3A11%3A24Z&se=2027-07-05T09%3A11%3A00Z&sr=b&sp=r&sig=N4a9OU0w0QXO6AOIBiu4bpl7AXvEZogeT%2FjUHNO7HzQ%3D "HTTP/1.1 200 OK"
-INFO:app.services.document_processor:Detected document format: pdf
-INFO:app.services.document_processor:Extracted text length: 108824 characters
-INFO:app.services.document_processor:Created 22 chunks
-INFO:app.services.query_engine:Cached 22 chunks for document
-INFO:app.services.embedding_service:Initialized FAISS index with dimension 384
-INFO:app.services.embedding_service:Index and chunk map cleared
-INFO:app.services.embedding_service:Adding 22 chunks to index
-INFO:app.services.embedding_service:Loading embedding model: all-MiniLM-L6-v2
-INFO:sentence_transformers.SentenceTransformer:Use pytorch device_name: cpu
-INFO:sentence_transformers.SentenceTransformer:Load pretrained SentenceTransformer: all-MiniLM-L6-v2
-INFO:app.services.embedding_service:Model loaded successfully with dimension: 384
-INFO:app.services.embedding_service:Initialized FAISS index with dimension 384
-INFO:app.services.embedding_service:Creating embeddings for 22 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.28s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.28s/it]
-INFO:app.services.embedding_service:Created embeddings with shape: (22, 384)
-INFO:app.services.embedding_service:Successfully added 22 chunks to index. Total: 22
-INFO:app.services.query_engine:Embeddings created and indexed successfully
-INFO:app.services.query_engine:Processing 3 questions
-INFO:app.services.query_engine:Processing question: What is the grace period for premium payment under the National Parivar Mediclaim Plus Policy?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What is the grace period for premium payment under the National Parivar Mediclaim Plus Policy?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 49.38it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 30868 characters
-INFO:app.services.llm_service:Generating answer for question: What is the grace period for premium payment under the National Parivar Mediclaim Plus Policy?...
-INFO:app.services.query_engine:Processing question: What is the waiting period for pre-existing diseases?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What is the waiting period for pre-existing diseases?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 32.97it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 30971 characters
-INFO:app.services.llm_service:Generating answer for question: What is the waiting period for pre-existing diseases?...
-INFO:app.services.query_engine:Processing question: What are the maximum sum insured options available?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What are the maximum sum insured options available?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 53.15it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 29977 characters
-INFO:app.services.llm_service:Generating answer for question: What are the maximum sum insured options available?...
-INFO:app.services.llm_service:Generated answer: The provided text mentions benefit amounts available under Critical Illness cover as INR 2,00,000, 3...
-INFO:app.services.llm_service:Generated answer: The grace period for premium payment to maintain continuity of benefits is 30 days.  Coverage is not...
-INFO:app.services.llm_service:Generated answer: The waiting period for pre-existing diseases is 36 months of continuous coverage after the date of i...
-INFO:app.services.query_engine:Query processing completed in 16.53 seconds
-INFO:app.main:Successfully processed 3 answers
-INFO:     127.0.0.1:44342 - "POST /hackrx/run HTTP/1.1" 200 OK
-INFO:app.main:Processing query request with 3 questions
-INFO:app.services.query_engine:Starting query processing for 3 questions
-INFO:app.services.query_engine:Using cached document chunks
-INFO:app.services.embedding_service:Initialized FAISS index with dimension 384
-INFO:app.services.embedding_service:Index and chunk map cleared
-INFO:app.services.embedding_service:Adding 22 chunks to index
-INFO:app.services.embedding_service:Creating embeddings for 22 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.43s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.43s/it]
-INFO:app.services.embedding_service:Created embeddings with shape: (22, 384)
-INFO:app.services.embedding_service:Successfully added 22 chunks to index. Total: 22
-INFO:app.services.query_engine:Embeddings created and indexed successfully
-INFO:app.services.query_engine:Processing 3 questions
-INFO:app.services.query_engine:Processing question: Does this policy cover maternity expenses?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: Does this policy cover maternity expenses?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 52.20it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 30572 characters
-INFO:app.services.llm_service:Generating answer for question: Does this policy cover maternity expenses?...
-INFO:app.services.query_engine:Processing question: What is the co-payment percentage for senior citizens?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What is the co-payment percentage for senior citizens?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 46.58it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 1 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 5888 characters
-INFO:app.services.llm_service:Generating answer for question: What is the co-payment percentage for senior citizens?...
-INFO:app.services.query_engine:Processing question: Are room rent restrictions mentioned in this policy?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: Are room rent restrictions mentioned in this policy?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 49.39it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 2 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 12619 characters
-INFO:app.services.llm_service:Generating answer for question: Are room rent restrictions mentioned in this policy?...
-INFO:app.services.llm_service:Generated answer: Yes, this policy covers maternity expenses, including baby from birth cover.  For normal delivery, t...
-INFO:app.services.llm_service:Generated answer: No, room rent restrictions are not mentioned in this policy....
-INFO:app.services.llm_service:Generated answer: The provided text does not specify different co-payment percentages based on age or senior citizen s...
-INFO:app.services.query_engine:Query processing completed in 3.75 seconds
-INFO:app.main:Successfully processed 3 answers
-INFO:     127.0.0.1:46040 - "POST /hackrx/run HTTP/1.1" 200 OK
-INFO:app.main:Processing query request with 3 questions
-INFO:app.services.query_engine:Starting query processing for 3 questions
-INFO:app.services.query_engine:Processing new document
-INFO:app.services.document_processor:Processing document from URL: https://hackrx.blob.core.windows.net/assets/Arogya%20Sanjeevani%20Policy%20-%20CIN%20-%20U10200WB1906GOI001713%201.pdf?sv=2023-01-03&st=2025-07-21T08%3A29%3A02Z&se=2025-09-22T08%3A29%3A00Z&sr=b&sp=r&sig=nzrz1K9Iurt%2BBXom%2FB%2BMPTFMFP3PRnIvEsipAX10Ig4%3D
-INFO:httpx:HTTP Request: GET https://hackrx.blob.core.windows.net/assets/Arogya%20Sanjeevani%20Policy%20-%20CIN%20-%20U10200WB1906GOI001713%201.pdf?sv=2023-01-03&st=2025-07-21T08%3A29%3A02Z&se=2025-09-22T08%3A29%3A00Z&sr=b&sp=r&sig=nzrz1K9Iurt%2BBXom%2FB%2BMPTFMFP3PRnIvEsipAX10Ig4%3D "HTTP/1.1 200 OK"
-INFO:app.services.document_processor:Detected document format: pdf
-INFO:app.services.document_processor:Extracted text length: 75990 characters
-INFO:app.services.document_processor:Created 16 chunks
-INFO:app.services.query_engine:Cached 16 chunks for document
-INFO:app.services.embedding_service:Initialized FAISS index with dimension 384
-INFO:app.services.embedding_service:Index and chunk map cleared
-INFO:app.services.embedding_service:Adding 16 chunks to index
-INFO:app.services.embedding_service:Creating embeddings for 16 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.04it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.04it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (16, 384)
-INFO:app.services.embedding_service:Successfully added 16 chunks to index. Total: 16
-INFO:app.services.query_engine:Embeddings created and indexed successfully
-INFO:app.services.query_engine:Processing 3 questions
-INFO:app.services.query_engine:Processing question: What is the maximum sum insured available under this policy?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What is the maximum sum insured available under this policy?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 43.90it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 29950 characters
-INFO:app.services.llm_service:Generating answer for question: What is the maximum sum insured available under this policy?...
-INFO:app.services.query_engine:Processing question: What are the waiting periods mentioned in this policy?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What are the waiting periods mentioned in this policy?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 47.59it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 30416 characters
-INFO:app.services.llm_service:Generating answer for question: What are the waiting periods mentioned in this policy?...
-INFO:app.services.query_engine:Processing question: Does this policy cover pre-existing diseases?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: Does this policy cover pre-existing diseases?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 51.85it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 31155 characters
-INFO:app.services.llm_service:Generating answer for question: Does this policy cover pre-existing diseases?...
-INFO:app.services.llm_service:Generated answer: The maximum sum insured available is 10 Lakhs....
-INFO:app.services.llm_service:Generated answer: Yes, this policy covers pre-existing diseases (PEDs) that are declared in the Proposal Form and acce...
-INFO:app.services.llm_service:Generated answer: The policy mentions the following waiting periods:
-
-* **Pre-Existing Diseases (Excl 01):** 36 months...
-INFO:app.services.query_engine:Query processing completed in 9.94 seconds
-INFO:app.main:Successfully processed 3 answers
-INFO:     127.0.0.1:54092 - "POST /hackrx/run HTTP/1.1" 200 OK
-INFO:app.main:Processing query request with 3 questions
-INFO:app.services.query_engine:Starting query processing for 3 questions
-INFO:app.services.query_engine:Using cached document chunks
-INFO:app.services.embedding_service:Initialized FAISS index with dimension 384
-INFO:app.services.embedding_service:Index and chunk map cleared
-INFO:app.services.embedding_service:Adding 16 chunks to index
-INFO:app.services.embedding_service:Creating embeddings for 16 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.13s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.13s/it]
-INFO:app.services.embedding_service:Created embeddings with shape: (16, 384)
-INFO:app.services.embedding_service:Successfully added 16 chunks to index. Total: 16
-INFO:app.services.query_engine:Embeddings created and indexed successfully
-INFO:app.services.query_engine:Processing 3 questions
-INFO:app.services.query_engine:Processing question: What is the maximum sum insured?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What is the maximum sum insured?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 47.43it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 29950 characters
-INFO:app.services.llm_service:Generating answer for question: What is the maximum sum insured?...
-INFO:app.services.query_engine:Processing question: What are the waiting periods?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What are the waiting periods?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 45.73it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 2 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 12471 characters
-INFO:app.services.llm_service:Generating answer for question: What are the waiting periods?...
-INFO:app.services.query_engine:Processing question: Does this cover pre-existing diseases?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: Does this cover pre-existing diseases?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 47.63it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 2 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 12471 characters
-INFO:app.services.llm_service:Generating answer for question: Does this cover pre-existing diseases?...
-INFO:app.services.llm_service:Generated answer: The maximum sum insured is 10L (1,000,000)....
-INFO:app.services.llm_service:Generated answer: The provided text defines Pre-Existing Disease as any condition, ailment, injury, or disease diagnos...
-INFO:app.services.llm_service:Generated answer: There are waiting periods for specified diseases/procedures.  A 24-month waiting period applies to c...
-INFO:app.services.query_engine:Query processing completed in 4.98 seconds
-INFO:app.main:Successfully processed 3 answers
-INFO:     127.0.0.1:46950 - "POST /hackrx/run HTTP/1.1" 200 OK
-INFO:app.main:Processing query request with 3 questions
-INFO:app.services.query_engine:Starting query processing for 3 questions
-INFO:app.services.query_engine:Using cached document chunks
-INFO:app.services.embedding_service:Initialized FAISS index with dimension 384
-INFO:app.services.embedding_service:Index and chunk map cleared
-INFO:app.services.embedding_service:Adding 16 chunks to index
-INFO:app.services.embedding_service:Creating embeddings for 16 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.21s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.21s/it]
-INFO:app.services.embedding_service:Created embeddings with shape: (16, 384)
-INFO:app.services.embedding_service:Successfully added 16 chunks to index. Total: 16
-INFO:app.services.query_engine:Embeddings created and indexed successfully
-INFO:app.services.query_engine:Processing 3 questions
-INFO:app.services.query_engine:Processing question: What is the maximum sum insured?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What is the maximum sum insured?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 43.19it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 29950 characters
-INFO:app.services.llm_service:Generating answer for question: What is the maximum sum insured?...
-INFO:app.services.query_engine:Processing question: What are the waiting periods?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What are the waiting periods?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 38.65it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 2 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 12471 characters
-INFO:app.services.llm_service:Generating answer for question: What are the waiting periods?...
-INFO:app.services.query_engine:Processing question: Does this cover pre-existing diseases?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: Does this cover pre-existing diseases?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 34.88it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 2 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 12471 characters
-INFO:app.services.llm_service:Generating answer for question: Does this cover pre-existing diseases?...
-INFO:app.services.llm_service:Generated answer: The maximum sum insured is 10L (1,000,000)....
-INFO:app.services.llm_service:Generated answer: The provided text defines Pre-Existing Disease as any condition, ailment, injury, or disease diagnos...
-INFO:app.services.llm_service:Generated answer: There are waiting periods for specified diseases/procedures.  A 24-month waiting period applies to c...
-INFO:app.services.query_engine:Query processing completed in 4.87 seconds
-INFO:app.main:Successfully processed 3 answers
-INFO:     127.0.0.1:44622 - "POST /hackrx/run HTTP/1.1" 200 OK
-INFO:app.main:Processing query request with 3 questions
-INFO:app.services.query_engine:Starting query processing for 3 questions
-INFO:app.services.query_engine:Using cached document chunks
-INFO:app.services.embedding_service:Initialized FAISS index with dimension 384
-INFO:app.services.embedding_service:Index and chunk map cleared
-INFO:app.services.embedding_service:Adding 16 chunks to index
-INFO:app.services.embedding_service:Creating embeddings for 16 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.31it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.31it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (16, 384)
-INFO:app.services.embedding_service:Successfully added 16 chunks to index. Total: 16
-INFO:app.services.query_engine:Embeddings created and indexed successfully
-INFO:app.services.query_engine:Processing 3 questions
-INFO:app.services.query_engine:Processing question: What is the maximum sum insured available under this policy?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What is the maximum sum insured available under this policy?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 58.57it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 29950 characters
-INFO:app.services.llm_service:Generating answer for question: What is the maximum sum insured available under this policy?...
-INFO:app.services.query_engine:Processing question: What are the waiting periods mentioned in this policy?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What are the waiting periods mentioned in this policy?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 56.35it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 30416 characters
-INFO:app.services.llm_service:Generating answer for question: What are the waiting periods mentioned in this policy?...
-INFO:app.services.query_engine:Processing question: Does this policy cover pre-existing diseases?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: Does this policy cover pre-existing diseases?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 56.42it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 31155 characters
-INFO:app.services.llm_service:Generating answer for question: Does this policy cover pre-existing diseases?...
-INFO:app.services.llm_service:Generated answer: The maximum sum insured available is 10 Lakhs....
-INFO:app.services.llm_service:Generated answer: Yes, this policy covers pre-existing diseases (PEDs) that are declared in the Proposal Form and acce...
-INFO:app.services.llm_service:Generated answer: The policy mentions the following waiting periods:
-
-* **Pre-Existing Diseases (Excl 01):** 36 months...
-INFO:app.services.query_engine:Query processing completed in 5.67 seconds
-INFO:app.main:Successfully processed 3 answers
-INFO:     127.0.0.1:56468 - "POST /hackrx/run HTTP/1.1" 200 OK
-INFO:app.main:Processing query request with 3 questions
-INFO:app.services.query_engine:Starting query processing for 3 questions
-INFO:app.services.query_engine:Using cached document chunks
-INFO:app.services.embedding_service:Initialized FAISS index with dimension 384
-INFO:app.services.embedding_service:Index and chunk map cleared
-INFO:app.services.embedding_service:Adding 16 chunks to index
-INFO:app.services.embedding_service:Creating embeddings for 16 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.27it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.27it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (16, 384)
-INFO:app.services.embedding_service:Successfully added 16 chunks to index. Total: 16
-INFO:app.services.query_engine:Embeddings created and indexed successfully
-INFO:app.services.query_engine:Processing 3 questions
-INFO:app.services.query_engine:Processing question: What is the maximum sum insured available under this policy?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What is the maximum sum insured available under this policy?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 58.02it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 29950 characters
-INFO:app.services.llm_service:Generating answer for question: What is the maximum sum insured available under this policy?...
-INFO:app.services.query_engine:Processing question: What are the waiting periods mentioned in this policy?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What are the waiting periods mentioned in this policy?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 57.03it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 30416 characters
-INFO:app.services.llm_service:Generating answer for question: What are the waiting periods mentioned in this policy?...
-INFO:app.services.query_engine:Processing question: Does this policy cover pre-existing diseases?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: Does this policy cover pre-existing diseases?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 58.50it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 31155 characters
-INFO:app.services.llm_service:Generating answer for question: Does this policy cover pre-existing diseases?...
-INFO:app.services.llm_service:Generated answer: The maximum sum insured available is 10 Lakhs....
-INFO:app.services.llm_service:Generated answer: Yes, this policy covers pre-existing diseases (PEDs) that are declared in the Proposal Form and acce...
-INFO:app.services.llm_service:Generated answer: The policy mentions the following waiting periods:
-
-* **Pre-Existing Diseases (Excl 01):** 36 months...
-INFO:app.services.query_engine:Query processing completed in 6.69 seconds
-INFO:app.main:Successfully processed 3 answers
-INFO:     127.0.0.1:39308 - "POST /hackrx/run HTTP/1.1" 200 OK
-INFO:app.main:Processing query request with 3 questions
-INFO:app.services.query_engine:Starting query processing for 3 questions
-INFO:app.services.query_engine:Using cached document chunks
-INFO:app.services.embedding_service:Initialized FAISS index with dimension 384
-INFO:app.services.embedding_service:Index and chunk map cleared
-INFO:app.services.embedding_service:Adding 16 chunks to index
-INFO:app.services.embedding_service:Creating embeddings for 16 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.01it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.01it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (16, 384)
-INFO:app.services.embedding_service:Successfully added 16 chunks to index. Total: 16
-INFO:app.services.query_engine:Embeddings created and indexed successfully
-INFO:app.services.query_engine:Processing 3 questions
-INFO:app.services.query_engine:Processing question: What is the maximum sum insured?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What is the maximum sum insured?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 41.12it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 29950 characters
-INFO:app.services.llm_service:Generating answer for question: What is the maximum sum insured?...
-INFO:app.services.query_engine:Processing question: What are the waiting periods?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What are the waiting periods?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 38.49it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 2 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 12471 characters
-INFO:app.services.llm_service:Generating answer for question: What are the waiting periods?...
-INFO:app.services.query_engine:Processing question: Does this cover pre-existing diseases?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: Does this cover pre-existing diseases?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 41.45it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 2 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 12471 characters
-INFO:app.services.llm_service:Generating answer for question: Does this cover pre-existing diseases?...
-INFO:app.services.llm_service:Generated answer: The maximum sum insured is 10 Lakhs....
-INFO:app.services.llm_service:Generated answer: The provided text defines Pre-Existing Disease as any condition, ailment, injury, or disease diagnos...
-INFO:app.services.llm_service:Generated answer: There are waiting periods for specified diseases/procedures.  A 24-month waiting period applies to c...
-INFO:app.services.query_engine:Query processing completed in 5.09 seconds
-INFO:app.main:Successfully processed 3 answers
-INFO:     127.0.0.1:44614 - "POST /hackrx/run HTTP/1.1" 200 OK
-INFO:app.main:Processing query request with 3 questions
-INFO:app.services.query_engine:Starting query processing for 3 questions
-INFO:app.services.query_engine:Using cached document chunks
-INFO:app.services.embedding_service:Initialized FAISS index with dimension 384
-INFO:app.services.embedding_service:Index and chunk map cleared
-INFO:app.services.embedding_service:Adding 16 chunks to index
-INFO:app.services.embedding_service:Creating embeddings for 16 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.27it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.27it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (16, 384)
-INFO:app.services.embedding_service:Successfully added 16 chunks to index. Total: 16
-INFO:app.services.query_engine:Embeddings created and indexed successfully
-INFO:app.services.query_engine:Processing 3 questions
-INFO:app.services.query_engine:Processing question: What is the maximum sum insured?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What is the maximum sum insured?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 61.66it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 29950 characters
-INFO:app.services.llm_service:Generating answer for question: What is the maximum sum insured?...
-INFO:app.services.query_engine:Processing question: What are the waiting periods?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What are the waiting periods?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 58.15it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 2 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 12471 characters
-INFO:app.services.llm_service:Generating answer for question: What are the waiting periods?...
-INFO:app.services.query_engine:Processing question: Does this cover pre-existing diseases?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: Does this cover pre-existing diseases?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 62.28it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 2 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 12471 characters
-INFO:app.services.llm_service:Generating answer for question: Does this cover pre-existing diseases?...
-INFO:app.services.llm_service:Generated answer: The maximum sum insured is 10 Lakhs....
-INFO:app.services.llm_service:Generated answer: The provided text defines Pre-Existing Disease as any condition, ailment, injury, or disease diagnos...
-INFO:app.services.llm_service:Generated answer: There are waiting periods for specified diseases/procedures.  A 24-month waiting period applies to c...
-INFO:app.services.query_engine:Query processing completed in 4.65 seconds
-INFO:app.main:Successfully processed 3 answers
-INFO:     127.0.0.1:54026 - "POST /hackrx/run HTTP/1.1" 200 OK
-INFO:app.main:Processing query request with 3 questions
-INFO:app.services.query_engine:Starting query processing for 3 questions
-INFO:app.services.query_engine:Using cached document chunks
-INFO:app.services.embedding_service:Initialized FAISS index with dimension 384
-INFO:app.services.embedding_service:Index and chunk map cleared
-INFO:app.services.embedding_service:Adding 16 chunks to index
-INFO:app.services.embedding_service:Creating embeddings for 16 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.29it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.29it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (16, 384)
-INFO:app.services.embedding_service:Successfully added 16 chunks to index. Total: 16
-INFO:app.services.query_engine:Embeddings created and indexed successfully
-INFO:app.services.query_engine:Processing 3 questions
-INFO:app.services.query_engine:Processing question: What is the maximum sum insured?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What is the maximum sum insured?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 62.24it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 29950 characters
-INFO:app.services.llm_service:Generating answer for question: What is the maximum sum insured?...
-INFO:app.services.query_engine:Processing question: What are the waiting periods?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What are the waiting periods?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 56.38it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 2 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 12471 characters
-INFO:app.services.llm_service:Generating answer for question: What are the waiting periods?...
-INFO:app.services.query_engine:Processing question: Does this cover pre-existing diseases?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: Does this cover pre-existing diseases?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 55.59it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 2 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 12471 characters
-INFO:app.services.llm_service:Generating answer for question: Does this cover pre-existing diseases?...
-INFO:app.services.llm_service:Generated answer: The maximum sum insured is 10 Lakhs....
-INFO:app.services.llm_service:Generated answer: The provided text defines Pre-Existing Disease as any condition, ailment, injury, or disease diagnos...
-INFO:app.services.llm_service:Generated answer: There are waiting periods for specified diseases/procedures.  A 24-month waiting period applies to c...
-INFO:app.services.query_engine:Query processing completed in 4.80 seconds
-INFO:app.main:Successfully processed 3 answers
-INFO:     127.0.0.1:46602 - "POST /hackrx/run HTTP/1.1" 200 OK
-INFO:app.main:Processing query request with 3 questions
-INFO:app.services.query_engine:Starting query processing for 3 questions
-INFO:app.services.query_engine:Using cached document chunks
-INFO:app.services.embedding_service:Initialized FAISS index with dimension 384
-INFO:app.services.embedding_service:Index and chunk map cleared
-INFO:app.services.embedding_service:Adding 16 chunks to index
-INFO:app.services.embedding_service:Creating embeddings for 16 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.19it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.19it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (16, 384)
-INFO:app.services.embedding_service:Successfully added 16 chunks to index. Total: 16
-INFO:app.services.query_engine:Embeddings created and indexed successfully
-INFO:app.services.query_engine:Processing 3 questions
-INFO:app.services.query_engine:Processing question: What is the maximum sum insured available under this policy?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What is the maximum sum insured available under this policy?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 56.58it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 29950 characters
-INFO:app.services.llm_service:Generating answer for question: What is the maximum sum insured available under this policy?...
-INFO:app.services.query_engine:Processing question: What are the waiting periods mentioned in this policy?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What are the waiting periods mentioned in this policy?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 50.45it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 30416 characters
-INFO:app.services.llm_service:Generating answer for question: What are the waiting periods mentioned in this policy?...
-INFO:app.services.query_engine:Processing question: Does this policy cover pre-existing diseases?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: Does this policy cover pre-existing diseases?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 55.10it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 31155 characters
-INFO:app.services.llm_service:Generating answer for question: Does this policy cover pre-existing diseases?...
-INFO:app.services.llm_service:Generated answer: The maximum sum insured available is 10 Lakhs....
-INFO:app.services.llm_service:Generated answer: Yes, this policy covers pre-existing diseases (PEDs) that are declared in the Proposal Form and acce...
-INFO:app.services.llm_service:Generated answer: The policy mentions the following waiting periods:
-
-* **Pre-Existing Diseases (Excl 01):** 36 months...
-INFO:app.services.query_engine:Query processing completed in 5.65 seconds
-INFO:app.main:Successfully processed 3 answers
-INFO:     127.0.0.1:34384 - "POST /hackrx/run HTTP/1.1" 200 OK
-INFO:app.main:Processing query request with 3 questions
-INFO:app.services.query_engine:Starting query processing for 3 questions
-INFO:app.services.query_engine:Using cached document chunks
-INFO:app.services.embedding_service:Initialized FAISS index with dimension 384
-INFO:app.services.embedding_service:Index and chunk map cleared
-INFO:app.services.embedding_service:Adding 16 chunks to index
-INFO:app.services.embedding_service:Creating embeddings for 16 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.15s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.15s/it]
-INFO:app.services.embedding_service:Created embeddings with shape: (16, 384)
-INFO:app.services.embedding_service:Successfully added 16 chunks to index. Total: 16
-INFO:app.services.query_engine:Embeddings created and indexed successfully
-INFO:app.services.query_engine:Processing 3 questions
-INFO:app.services.query_engine:Processing question: What is the maximum sum insured available under this policy?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What is the maximum sum insured available under this policy?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 44.87it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 29950 characters
-INFO:app.services.llm_service:Generating answer for question: What is the maximum sum insured available under this policy?...
-INFO:app.services.query_engine:Processing question: What are the waiting periods mentioned in this policy?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What are the waiting periods mentioned in this policy?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 44.51it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 30416 characters
-INFO:app.services.llm_service:Generating answer for question: What are the waiting periods mentioned in this policy?...
-INFO:app.services.query_engine:Processing question: Does this policy cover pre-existing diseases?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: Does this policy cover pre-existing diseases?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 48.13it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 31155 characters
-INFO:app.services.llm_service:Generating answer for question: Does this policy cover pre-existing diseases?...
-INFO:app.services.llm_service:Generated answer: The maximum sum insured available is 10 Lakhs....
-INFO:app.services.llm_service:Generated answer: Yes, this policy covers pre-existing diseases (PEDs) that are declared in the Proposal Form and acce...
-INFO:app.services.llm_service:Generated answer: The policy mentions the following waiting periods:
-
-* **Pre-Existing Diseases (Excl 01):** 36 months...
-INFO:app.services.query_engine:Query processing completed in 6.01 seconds
-INFO:app.main:Successfully processed 3 answers
-INFO:     127.0.0.1:43636 - "POST /hackrx/run HTTP/1.1" 200 OK
-INFO:app.main:Processing query request with 3 questions
-INFO:app.services.query_engine:Starting query processing for 3 questions
-INFO:app.services.query_engine:Using cached document chunks
-INFO:app.services.embedding_service:Initialized FAISS index with dimension 384
-INFO:app.services.embedding_service:Index and chunk map cleared
-INFO:app.services.embedding_service:Adding 16 chunks to index
-INFO:app.services.embedding_service:Creating embeddings for 16 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.25it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.25it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (16, 384)
-INFO:app.services.embedding_service:Successfully added 16 chunks to index. Total: 16
-INFO:app.services.query_engine:Embeddings created and indexed successfully
-INFO:app.services.query_engine:Processing 3 questions
-INFO:app.services.query_engine:Processing question: What is the maximum sum insured available under this policy?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What is the maximum sum insured available under this policy?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 56.97it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 29950 characters
-INFO:app.services.llm_service:Generating answer for question: What is the maximum sum insured available under this policy?...
-INFO:app.services.query_engine:Processing question: What are the waiting periods mentioned in this policy?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What are the waiting periods mentioned in this policy?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 54.32it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 30416 characters
-INFO:app.services.llm_service:Generating answer for question: What are the waiting periods mentioned in this policy?...
-INFO:app.services.query_engine:Processing question: Does this policy cover pre-existing diseases?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: Does this policy cover pre-existing diseases?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 58.66it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 31155 characters
-INFO:app.services.llm_service:Generating answer for question: Does this policy cover pre-existing diseases?...
-INFO:app.services.llm_service:Generated answer: The maximum sum insured available is 10 Lakhs....
-INFO:app.services.llm_service:Generated answer: Yes, this policy covers pre-existing diseases (PEDs) that are declared in the Proposal Form and acce...
-INFO:app.services.llm_service:Generated answer: The policy mentions the following waiting periods:
-
-* **Pre-Existing Diseases (Excl 01):** 36 months...
-INFO:app.services.query_engine:Query processing completed in 5.82 seconds
-INFO:app.main:Successfully processed 3 answers
-INFO:     127.0.0.1:42996 - "POST /hackrx/run HTTP/1.1" 200 OK
-INFO:app.main:Processing query request with 3 questions
-INFO:app.services.query_engine:Starting query processing for 3 questions
-INFO:app.services.query_engine:Using cached document chunks
-INFO:app.services.embedding_service:Initialized FAISS index with dimension 384
-INFO:app.services.embedding_service:Index and chunk map cleared
-INFO:app.services.embedding_service:Adding 16 chunks to index
-INFO:app.services.embedding_service:Creating embeddings for 16 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.28it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.28it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (16, 384)
-INFO:app.services.embedding_service:Successfully added 16 chunks to index. Total: 16
-INFO:app.services.query_engine:Embeddings created and indexed successfully
-INFO:app.services.query_engine:Processing 3 questions
-INFO:app.services.query_engine:Processing question: What is the maximum sum insured available under this policy?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What is the maximum sum insured available under this policy?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.06it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 29950 characters
-INFO:app.services.llm_service:Generating answer for question: What is the maximum sum insured available under this policy?...
-INFO:app.services.query_engine:Processing question: What are the waiting periods mentioned in this policy?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What are the waiting periods mentioned in this policy?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 60.80it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 30416 characters
-INFO:app.services.llm_service:Generating answer for question: What are the waiting periods mentioned in this policy?...
-INFO:app.services.query_engine:Processing question: Does this policy cover pre-existing diseases?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: Does this policy cover pre-existing diseases?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 70.33it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 31155 characters
-INFO:app.services.llm_service:Generating answer for question: Does this policy cover pre-existing diseases?...
-INFO:app.services.llm_service:Generated answer: The maximum sum insured available is 10 Lakhs....
-INFO:app.services.llm_service:Generated answer: Yes, this policy covers pre-existing diseases (PEDs) that are declared in the Proposal Form and acce...
-INFO:app.services.llm_service:Generated answer: The policy mentions the following waiting periods:
-
-* **Pre-Existing Diseases (Excl 01):** 36 months...
-INFO:app.services.query_engine:Query processing completed in 5.73 seconds
-INFO:app.main:Successfully processed 3 answers
-INFO:     127.0.0.1:38564 - "POST /hackrx/run HTTP/1.1" 200 OK
-INFO:app.main:Processing query request with 3 questions
-INFO:app.services.query_engine:Starting query processing for 3 questions
-INFO:app.services.query_engine:Using cached document chunks
-INFO:app.services.embedding_service:Initialized FAISS index with dimension 384
-INFO:app.services.embedding_service:Index and chunk map cleared
-INFO:app.services.embedding_service:Adding 16 chunks to index
-INFO:app.services.embedding_service:Creating embeddings for 16 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.15s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.15s/it]
-INFO:app.services.embedding_service:Created embeddings with shape: (16, 384)
-INFO:app.services.embedding_service:Successfully added 16 chunks to index. Total: 16
-INFO:app.services.query_engine:Embeddings created and indexed successfully
-INFO:app.services.query_engine:Processing 3 questions
-INFO:app.services.query_engine:Processing question: What is the maximum sum insured available under this policy?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What is the maximum sum insured available under this policy?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 53.81it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 29950 characters
-INFO:app.services.llm_service:Generating answer for question: What is the maximum sum insured available under this policy?...
-INFO:app.services.query_engine:Processing question: What are the waiting periods mentioned in this policy?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What are the waiting periods mentioned in this policy?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 54.97it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 30416 characters
-INFO:app.services.llm_service:Generating answer for question: What are the waiting periods mentioned in this policy?...
-INFO:app.services.query_engine:Processing question: Does this policy cover pre-existing diseases?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: Does this policy cover pre-existing diseases?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 54.17it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 31155 characters
-INFO:app.services.llm_service:Generating answer for question: Does this policy cover pre-existing diseases?...
-INFO:app.services.llm_service:Generated answer: The maximum sum insured available is 10 Lakhs....
-INFO:app.services.llm_service:Generated answer: Yes, this policy covers pre-existing diseases (PEDs) that are declared in the Proposal Form and acce...
-INFO:app.services.llm_service:Generated answer: The policy mentions the following waiting periods:
-
-* **Pre-Existing Diseases (Excl 01):** 36 months...
-INFO:app.services.query_engine:Query processing completed in 5.98 seconds
-INFO:app.main:Successfully processed 3 answers
-INFO:     127.0.0.1:53270 - "POST /hackrx/run HTTP/1.1" 200 OK
-INFO:app.main:Processing query request with 3 questions
-INFO:app.services.query_engine:Starting query processing for 3 questions
-INFO:app.services.query_engine:Using cached document chunks
-INFO:app.services.embedding_service:Initialized FAISS index with dimension 384
-INFO:app.services.embedding_service:Index and chunk map cleared
-INFO:app.services.embedding_service:Adding 16 chunks to index
-INFO:app.services.embedding_service:Creating embeddings for 16 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.16s/it]Batches: 100%|██████████| 1/1 [00:01<00:00,  1.16s/it]
-INFO:app.services.embedding_service:Created embeddings with shape: (16, 384)
-INFO:app.services.embedding_service:Successfully added 16 chunks to index. Total: 16
-INFO:app.services.query_engine:Embeddings created and indexed successfully
-INFO:app.services.query_engine:Processing 3 questions
-INFO:app.services.query_engine:Processing question: What is the maximum sum insured available under this policy?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What is the maximum sum insured available under this policy?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 47.67it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 29950 characters
-INFO:app.services.llm_service:Generating answer for question: What is the maximum sum insured available under this policy?...
-INFO:app.services.query_engine:Processing question: What are the waiting periods mentioned in this policy?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What are the waiting periods mentioned in this policy?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 39.74it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 30416 characters
-INFO:app.services.llm_service:Generating answer for question: What are the waiting periods mentioned in this policy?...
-INFO:app.services.query_engine:Processing question: Does this policy cover pre-existing diseases?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: Does this policy cover pre-existing diseases?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 51.10it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 31155 characters
-INFO:app.services.llm_service:Generating answer for question: Does this policy cover pre-existing diseases?...
-INFO:app.services.llm_service:Generated answer: The maximum sum insured available is 10 Lakhs....
-INFO:app.services.llm_service:Generated answer: Yes, this policy covers pre-existing diseases (PEDs) that are declared in the Proposal Form and acce...
-INFO:app.services.llm_service:Generated answer: The policy mentions the following waiting periods:
-
-* **Pre-Existing Diseases (Excl 01):** 36 months...
-INFO:app.services.query_engine:Query processing completed in 5.94 seconds
-INFO:app.main:Successfully processed 3 answers
-INFO:     127.0.0.1:57206 - "POST /hackrx/run HTTP/1.1" 200 OK
-INFO:app.main:Processing query request with 3 questions
-INFO:app.services.query_engine:Starting query processing for 3 questions
-INFO:app.services.query_engine:Using cached document chunks
-INFO:app.services.embedding_service:Initialized FAISS index with dimension 384
-INFO:app.services.embedding_service:Index and chunk map cleared
-INFO:app.services.embedding_service:Adding 16 chunks to index
-INFO:app.services.embedding_service:Creating embeddings for 16 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.32it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.32it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (16, 384)
-INFO:app.services.embedding_service:Successfully added 16 chunks to index. Total: 16
-INFO:app.services.query_engine:Embeddings created and indexed successfully
-INFO:app.services.query_engine:Processing 3 questions
-INFO:app.services.query_engine:Processing question: What is the maximum sum insured available under this policy?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What is the maximum sum insured available under this policy?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 69.60it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 29950 characters
-INFO:app.services.llm_service:Generating answer for question: What is the maximum sum insured available under this policy?...
-INFO:app.services.query_engine:Processing question: What are the waiting periods mentioned in this policy?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What are the waiting periods mentioned in this policy?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 52.03it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 30416 characters
-INFO:app.services.llm_service:Generating answer for question: What are the waiting periods mentioned in this policy?...
-INFO:app.services.query_engine:Processing question: Does this policy cover pre-existing diseases?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: Does this policy cover pre-existing diseases?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 54.95it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 31155 characters
-INFO:app.services.llm_service:Generating answer for question: Does this policy cover pre-existing diseases?...
-INFO:app.services.llm_service:Generated answer: The maximum sum insured available is 10 Lakhs....
-ERROR:app.services.llm_service:Error generating answer: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
-  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
-  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
-  quota_dimensions {
-    key: "model"
-    value: "gemini-1.5-flash"
-  }
-  quota_dimensions {
-    key: "location"
-    value: "global"
-  }
-  quota_value: 50
-}
-, links {
-  description: "Learn more about Gemini API quotas"
-  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
-}
-, retry_delay {
-  seconds: 58
-}
-]
-INFO:app.services.llm_service:Generated answer: Yes, this policy covers pre-existing diseases (PEDs) that are declared in the Proposal Form and acce...
-INFO:app.services.query_engine:Query processing completed in 3.62 seconds
-INFO:app.main:Successfully processed 3 answers
-INFO:     127.0.0.1:38852 - "POST /hackrx/run HTTP/1.1" 200 OK
-INFO:app.main:Processing query request with 3 questions
-INFO:app.services.query_engine:Starting query processing for 3 questions
-INFO:app.services.query_engine:Using cached document chunks
-INFO:app.services.embedding_service:Initialized FAISS index with dimension 384
-INFO:app.services.embedding_service:Index and chunk map cleared
-INFO:app.services.embedding_service:Adding 16 chunks to index
-INFO:app.services.embedding_service:Creating embeddings for 16 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.33it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.33it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (16, 384)
-INFO:app.services.embedding_service:Successfully added 16 chunks to index. Total: 16
-INFO:app.services.query_engine:Embeddings created and indexed successfully
-INFO:app.services.query_engine:Processing 3 questions
-INFO:app.services.query_engine:Processing question: What is the maximum sum insured available under this policy?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What is the maximum sum insured available under this policy?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 71.56it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 29950 characters
-INFO:app.services.llm_service:Generating answer for question: What is the maximum sum insured available under this policy?...
-INFO:app.services.query_engine:Processing question: What are the waiting periods mentioned in this policy?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What are the waiting periods mentioned in this policy?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 66.87it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 30416 characters
-INFO:app.services.llm_service:Generating answer for question: What are the waiting periods mentioned in this policy?...
-INFO:app.services.query_engine:Processing question: Does this policy cover pre-existing diseases?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: Does this policy cover pre-existing diseases?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 73.78it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 31155 characters
-INFO:app.services.llm_service:Generating answer for question: Does this policy cover pre-existing diseases?...
-ERROR:app.services.llm_service:Error generating answer: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
-  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
-  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
-  quota_dimensions {
-    key: "model"
-    value: "gemini-1.5-flash"
-  }
-  quota_dimensions {
-    key: "location"
-    value: "global"
-  }
-  quota_value: 50
-}
-, links {
-  description: "Learn more about Gemini API quotas"
-  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
-}
-, retry_delay {
-  seconds: 38
-}
-]
-ERROR:app.services.llm_service:Error generating answer: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
-  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
-  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
-  quota_dimensions {
-    key: "model"
-    value: "gemini-1.5-flash"
-  }
-  quota_dimensions {
-    key: "location"
-    value: "global"
-  }
-  quota_value: 50
-}
-, links {
-  description: "Learn more about Gemini API quotas"
-  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
-}
-, retry_delay {
-  seconds: 37
-}
-]
-ERROR:app.services.llm_service:Error generating answer: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
-  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
-  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
-  quota_dimensions {
-    key: "model"
-    value: "gemini-1.5-flash"
-  }
-  quota_dimensions {
-    key: "location"
-    value: "global"
-  }
-  quota_value: 50
-}
-, links {
-  description: "Learn more about Gemini API quotas"
-  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
-}
-, retry_delay {
-  seconds: 37
-}
-]
-INFO:app.services.query_engine:Query processing completed in 2.57 seconds
-INFO:app.main:Successfully processed 3 answers
-INFO:     127.0.0.1:35520 - "POST /hackrx/run HTTP/1.1" 200 OK
-INFO:app.main:Processing query request with 3 questions
-INFO:app.services.query_engine:Starting query processing for 3 questions
-INFO:app.services.query_engine:Using cached document chunks
-INFO:app.services.embedding_service:Initialized FAISS index with dimension 384
-INFO:app.services.embedding_service:Index and chunk map cleared
-INFO:app.services.embedding_service:Adding 16 chunks to index
-INFO:app.services.embedding_service:Creating embeddings for 16 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.27it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.27it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (16, 384)
-INFO:app.services.embedding_service:Successfully added 16 chunks to index. Total: 16
-INFO:app.services.query_engine:Embeddings created and indexed successfully
-INFO:app.services.query_engine:Processing 3 questions
-INFO:app.services.query_engine:Processing question: What is the maximum sum insured available under this policy?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What is the maximum sum insured available under this policy?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 57.40it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 29950 characters
-INFO:app.services.llm_service:Generating answer for question: What is the maximum sum insured available under this policy?...
-INFO:app.services.query_engine:Processing question: What are the waiting periods mentioned in this policy?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What are the waiting periods mentioned in this policy?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 55.67it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 30416 characters
-INFO:app.services.llm_service:Generating answer for question: What are the waiting periods mentioned in this policy?...
-INFO:app.services.query_engine:Processing question: Does this policy cover pre-existing diseases?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: Does this policy cover pre-existing diseases?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 56.98it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 31155 characters
-INFO:app.services.llm_service:Generating answer for question: Does this policy cover pre-existing diseases?...
-ERROR:app.services.llm_service:Error generating answer: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
-  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
-  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
-  quota_dimensions {
-    key: "model"
-    value: "gemini-1.5-flash"
-  }
-  quota_dimensions {
-    key: "location"
-    value: "global"
-  }
-  quota_value: 50
-}
-, links {
-  description: "Learn more about Gemini API quotas"
-  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
-}
-, retry_delay {
-  seconds: 41
-}
-]
-ERROR:app.services.llm_service:Error generating answer: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
-  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
-  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
-  quota_dimensions {
-    key: "model"
-    value: "gemini-1.5-flash"
-  }
-  quota_dimensions {
-    key: "location"
-    value: "global"
-  }
-  quota_value: 50
-}
-, links {
-  description: "Learn more about Gemini API quotas"
-  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
-}
-, retry_delay {
-  seconds: 40
-}
-]
-ERROR:app.services.llm_service:Error generating answer: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
-  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
-  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
-  quota_dimensions {
-    key: "model"
-    value: "gemini-1.5-flash"
-  }
-  quota_dimensions {
-    key: "location"
-    value: "global"
-  }
-  quota_value: 50
-}
-, links {
-  description: "Learn more about Gemini API quotas"
-  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
-}
-, retry_delay {
-  seconds: 40
-}
-]
-INFO:app.services.query_engine:Query processing completed in 2.62 seconds
-INFO:app.main:Successfully processed 3 answers
-INFO:     127.0.0.1:33418 - "POST /hackrx/run HTTP/1.1" 200 OK
-INFO:app.main:Processing query request with 3 questions
-INFO:app.services.query_engine:Starting query processing for 3 questions
-INFO:app.services.query_engine:Using cached document chunks
-INFO:app.services.embedding_service:Initialized FAISS index with dimension 384
-INFO:app.services.embedding_service:Index and chunk map cleared
-INFO:app.services.embedding_service:Adding 16 chunks to index
-INFO:app.services.embedding_service:Creating embeddings for 16 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.28it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  1.28it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (16, 384)
-INFO:app.services.embedding_service:Successfully added 16 chunks to index. Total: 16
-INFO:app.services.query_engine:Embeddings created and indexed successfully
-INFO:app.services.query_engine:Processing 3 questions
-INFO:app.services.query_engine:Processing question: What is the maximum sum insured available under this policy?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What is the maximum sum insured available under this policy?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 55.21it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 29950 characters
-INFO:app.services.llm_service:Generating answer for question: What is the maximum sum insured available under this policy?...
-INFO:app.services.query_engine:Processing question: What are the waiting periods mentioned in this policy?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: What are the waiting periods mentioned in this policy?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 42.54it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 30416 characters
-INFO:app.services.llm_service:Generating answer for question: What are the waiting periods mentioned in this policy?...
-INFO:app.services.query_engine:Processing question: Does this policy cover pre-existing diseases?...
-INFO:app.services.embedding_service:Searching for similar chunks with query: Does this policy cover pre-existing diseases?...
-INFO:app.services.embedding_service:Creating embeddings for 1 texts
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00, 44.09it/s]
-INFO:app.services.embedding_service:Created embeddings with shape: (1, 384)
-INFO:app.services.embedding_service:Found 5 relevant chunks
-INFO:app.services.embedding_service:Retrieved context of length: 31155 characters
-INFO:app.services.llm_service:Generating answer for question: Does this policy cover pre-existing diseases?...
-ERROR:app.services.llm_service:Error generating answer: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
-  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
-  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
-  quota_dimensions {
-    key: "model"
-    value: "gemini-1.5-flash"
-  }
-  quota_dimensions {
-    key: "location"
-    value: "global"
-  }
-  quota_value: 50
-}
-, links {
-  description: "Learn more about Gemini API quotas"
-  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
-}
-, retry_delay {
-  seconds: 18
-}
-]
-ERROR:app.services.llm_service:Error generating answer: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
-  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
-  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
-  quota_dimensions {
-    key: "model"
-    value: "gemini-1.5-flash"
-  }
-  quota_dimensions {
-    key: "location"
-    value: "global"
-  }
-  quota_value: 50
-}
-, links {
-  description: "Learn more about Gemini API quotas"
-  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
-}
-, retry_delay {
-  seconds: 17
-}
-]
-ERROR:app.services.llm_service:Error generating answer: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. [violations {
-  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
-  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
-  quota_dimensions {
-    key: "model"
-    value: "gemini-1.5-flash"
-  }
-  quota_dimensions {
-    key: "location"
-    value: "global"
-  }
-  quota_value: 50
-}
-, links {
-  description: "Learn more about Gemini API quotas"
-  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
-}
-, retry_delay {
-  seconds: 17
-}
-]
-INFO:app.services.query_engine:Query processing completed in 2.70 seconds
-INFO:app.main:Successfully processed 3 answers
-INFO:     127.0.0.1:54384 - "POST /hackrx/run HTTP/1.1" 200 OK
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [36205]

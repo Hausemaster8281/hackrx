@@ -134,9 +134,9 @@ class QueryEngine:
                 return "Unable to find relevant information in the document to answer this question."
             
             # Step 2: Generate answer using LLM
-            llm_response = await self.llm_service.generate_answer(context, question)
+            answer = await self.llm_service.generate_answer(question, context)
             
-            return llm_response.answer
+            return answer
             
         except Exception as e:
             logger.error(f"Error processing single question: {str(e)}")

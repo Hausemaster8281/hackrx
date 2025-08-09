@@ -2,6 +2,7 @@ import google.generativeai as genai
 from typing import List, Optional, Dict, Any
 import logging
 import asyncio
+import re
 
 from ..models.schemas import LLMResponse
 from ..core.config import settings
@@ -14,7 +15,8 @@ class LLMService:
     def __init__(self):
         """Initialize the LLM service"""
         self.client = None
-        self.model = settings.gemini_model
+        self.model = None
+        self.model_name = settings.gemini_model
         self.max_tokens = 2000  # Default max tokens
         self.temperature = 0.1  # Default temperature
         
@@ -22,8 +24,9 @@ class LLMService:
         if settings.gemini_api_key:
             try:
                 genai.configure(api_key=settings.gemini_api_key)
-                self.client = genai.GenerativeModel(self.model)
-                logger.info(f"Gemini client initialized with model: {self.model}")
+                self.model = genai.GenerativeModel(self.model_name)
+                self.client = self.model  # For backward compatibility
+                logger.info(f"Gemini client initialized with model: {self.model_name}")
             except Exception as e:
                 logger.error(f"Failed to initialize Gemini client: {e}")
         else:
@@ -68,57 +71,93 @@ QUESTION: {question}
 
 ANSWER:"""
     
-    async def generate_answer(self, context: str, question: str) -> LLMResponse:
-        """Generate an answer using the LLM"""
+    async def generate_answer(self, query: str, context: str) -> str:
+        """Generate answer using Gemini with enhanced prompting"""
         try:
-            if not self.client:
-                # Fallback response when OpenAI is not available
-                return LLMResponse(
-                    answer="Unable to process question - LLM service not available",
-                    confidence=0.0,
-                    reasoning="OpenAI API key not configured",
-                    sources=[]
-                )
+            # Clean and prepare context
+            cleaned_context = self.clean_context(context)
             
-            logger.info(f"Generating answer for question: {question[:100]}...")
-            
-            # Create prompts
             system_prompt = self.create_system_prompt()
-            user_prompt = self.create_user_prompt(context, question)
             
-            # Combine system and user prompt for Gemini
-            full_prompt = f"{system_prompt}\n\nDocument Context:\n{context}\n\nQuestion: {question}"
-            
-            # Call Gemini API
-            response = await asyncio.to_thread(
-                self.client.generate_content,
-                full_prompt,
+            # Enhanced prompt with explicit instructions
+            prompt = f"""{system_prompt}
+
+CONTEXT FROM DOCUMENTS:
+{cleaned_context}
+
+QUESTION: {query}
+
+ANSWER REQUIREMENTS:
+- Base your answer ONLY on the provided context
+- Include all specific details, numbers, percentages, and timeframes
+- Mention all conditions, exclusions, or special circumstances
+- Use exact quotes for important figures or conditions
+- If information is missing, explicitly state what is not available
+- Provide a comprehensive, detailed response
+
+ANSWER:"""
+
+            response = await self.model.generate_content_async(
+                prompt,
                 generation_config=genai.types.GenerationConfig(
-                    max_output_tokens=300,  # Increased for detailed responses like the sample
-                    temperature=self.temperature
+                    max_output_tokens=400,  # Increased for more detailed answers
+                    temperature=0.1,  # Lower temperature for more consistent answers
+                    top_p=0.8,
+                    top_k=20,
                 )
             )
             
-            answer = response.text.strip()
+            if response and response.text:
+                # Clean up the response
+                answer = response.text.strip()
+                # Remove any unwanted prefixes or formatting
+                answer = self.clean_response(answer)
+                return answer
             
-            logger.info(f"Generated answer: {answer[:100]}...")
-            
-            return LLMResponse(
-                answer=answer,
-                confidence=0.9,  # High confidence when using Gemini
-                reasoning=f"Answer generated from document context using {self.model}",
-                sources=["document_context"]
-            )
+            return "I apologize, but I couldn't generate a response. Please try again."
             
         except Exception as e:
-            logger.error(f"Error generating answer: {str(e)}")
-            # Return a fallback response instead of raising exception
-            return LLMResponse(
-                answer=f"Unable to generate answer due to error: {str(e)}",
-                confidence=0.0,
-                reasoning="Error in LLM processing",
-                sources=[]
-            )
+            logger.error(f"Error generating answer with Gemini: {str(e)}")
+            return f"Error generating response: {str(e)}"
+    
+    def clean_context(self, context: str) -> str:
+        """Clean and prepare context for better processing"""
+        if not context:
+            return "No relevant context found in the documents."
+        
+        # Remove excessive whitespace and newlines
+        context = re.sub(r'\n\s*\n', '\n\n', context)
+        context = re.sub(r' +', ' ', context)
+        
+        # Remove redundant sections if context is too long
+        if len(context) > 8000:  # Limit context length
+            sentences = context.split('. ')
+            # Keep first and last parts, remove middle if too long
+            if len(sentences) > 50:
+                context = '. '.join(sentences[:25] + ['[...relevant content continues...]'] + sentences[-25:])
+        
+        return context.strip()
+    
+    def clean_response(self, response: str) -> str:
+        """Clean and format the LLM response"""
+        # Remove common unwanted prefixes
+        prefixes_to_remove = [
+            "Based on the provided context,",
+            "According to the document,",
+            "The document states that",
+            "From the context provided,",
+            "As per the information given,",
+        ]
+        
+        for prefix in prefixes_to_remove:
+            if response.lower().startswith(prefix.lower()):
+                response = response[len(prefix):].strip()
+        
+        # Ensure proper sentence structure
+        if response and not response.endswith(('.', '!', '?')):
+            response += '.'
+        
+        return response
     
     async def generate_answers_batch(self, context_question_pairs: List[tuple]) -> List[LLMResponse]:
         """Generate answers for multiple questions in batch"""
