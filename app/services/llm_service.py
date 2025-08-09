@@ -45,20 +45,21 @@ class LLMService:
 Your task is to answer questions based on the provided context from documents. Follow these guidelines:
 
 1. ACCURACY: Provide precise, factual answers based ONLY on the provided context
-2. COMPLETENESS: Include all relevant details, numbers, timeframes, and conditions
+2. DIRECTNESS: Give direct answers without unnecessary introductory phrases
 3. CLARITY: Use clear, professional language that's easy to understand
 4. SPECIFICITY: Always include exact numbers, percentages, timeframes, and monetary amounts
 5. CONTEXT-BASED: Never add information not present in the context
 6. COMPREHENSIVE: Provide detailed explanations with all conditions and exceptions
-7. STRUCTURE: Organize complex answers logically with proper flow
+7. CONCISENESS: Avoid redundant phrasing and get straight to the point
 
 CRITICAL RULES:
+- Start directly with the answer, avoid phrases like "The grace period is" or "According to the document"
 - If specific information is not in the context, state "Information not specified in the document"
-- Always quote exact figures, timeframes, and conditions from the document
+- Always include exact figures, timeframes, and conditions from the document
 - Include relevant policy clauses, section numbers, or references when available
 - Explain any conditions, exclusions, or special circumstances mentioned
 
-Format your answers as detailed, professional responses that fully address the question."""
+Format your answers as direct, professional responses that immediately address the question."""
     
     def create_user_prompt(self, context: str, question: str) -> str:
         """Create the user prompt with context and question"""
@@ -147,11 +148,23 @@ ANSWER:"""
             "The document states that",
             "From the context provided,",
             "As per the information given,",
+            "The grace period for premium payment is",
+            "The waiting period for pre-existing diseases is",
+            "The answer is",
         ]
         
         for prefix in prefixes_to_remove:
             if response.lower().startswith(prefix.lower()):
                 response = response[len(prefix):].strip()
+        
+        # Remove excessive quotes around the main content
+        response = response.strip('"').strip("'")
+        
+        # Clean up quote formatting - remove quotes around specific phrases but keep the content
+        # Remove patterns like "thirty days (where premium is paid...)" and just return: thirty days (where premium is paid...)
+        import re
+        response = re.sub(r'^"([^"]+)"$', r'\1', response)
+        response = re.sub(r"^'([^']+)'$", r'\1', response)
         
         # Ensure proper sentence structure
         if response and not response.endswith(('.', '!', '?')):
