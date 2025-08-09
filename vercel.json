@@ -1,0 +1,24 @@
+{
+  "builds": [
+    {
+      "src": "api/index.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "api/index.py"
+    }
+  ],
+  "env": {
+    "GEMINI_API_KEY": "AIzaSyDy3KBe_52XeAxvxyM9x2sdgMSp5L0M9Qg",
+    "API_TOKEN": "93f02c19721b0c40d273b9395370f249d43c2d3deb2a39498fdd8a2b9e2d3ee3",
+    "GEMINI_MODEL": "gemini-1.5-flash",
+    "EMBEDDING_MODEL": "all-MiniLM-L6-v2",
+    "CHUNK_SIZE": "500",
+    "CHUNK_OVERLAP": "50",
+    "MAX_SEARCH_RESULTS": "5",
+    "DEBUG": "False"
+  }
+}

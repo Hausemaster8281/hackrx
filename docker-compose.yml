@@ -1,0 +1,9 @@
+version: 3
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - GEMINI_API_KEY=AIzaSyDy3KBe_52XeAxvxyM9x2sdgMSp5L0M9Qg
+      - API_TOKEN=93f02c19721b0c40d273b9395370f249d43c2d3deb2a39498fdd8a2b9e2d3ee3
