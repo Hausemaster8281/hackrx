@@ -21,7 +21,20 @@ class Settings(BaseSettings):
     
     # Gemini Configuration
     gemini_api_key: Optional[str] = Field(default=None, env="GEMINI_API_KEY")
+    gemini_api_key_2: Optional[str] = Field(default=None, env="GEMINI_API_KEY_2")
+    gemini_api_key_3: Optional[str] = Field(default=None, env="GEMINI_API_KEY_3")
     gemini_model: str = Field(default="gemini-1.5-flash", env="GEMINI_MODEL")
+    
+    def get_available_gemini_keys(self) -> list:
+        """Get all available Gemini API keys"""
+        keys = []
+        if self.gemini_api_key:
+            keys.append(self.gemini_api_key)
+        if self.gemini_api_key_2:
+            keys.append(self.gemini_api_key_2)
+        if self.gemini_api_key_3:
+            keys.append(self.gemini_api_key_3)
+        return keys
     
     # Embedding Configuration
     embedding_model: str = Field(default="all-MiniLM-L6-v2", env="EMBEDDING_MODEL")
@@ -30,7 +43,7 @@ class Settings(BaseSettings):
     
     # FAISS Configuration
     faiss_index_path: str = Field(default="./data/faiss_index", env="FAISS_INDEX_PATH")
-    max_search_results: int = Field(default=10, env="MAX_SEARCH_RESULTS")  # Increased from 5
+    max_search_results: int = Field(default=20, env="MAX_SEARCH_RESULTS")  # Increased for more comprehensive context  # Increased from 5
     
     # Server Configuration
     host: str = Field(default="0.0.0.0", env="HOST")
@@ -45,6 +58,7 @@ class Settings(BaseSettings):
     class Config:
         env_file = ".env"
         env_file_encoding = "utf-8"
+        extra = "forbid"  # Explicitly forbid extra fields to prevent OpenAI config
 
 
 # Global settings instance

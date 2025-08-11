@@ -6,6 +6,7 @@ import re
 
 from ..models.schemas import LLMResponse
 from ..core.config import settings
+from .response_cache import ResponseCache
 
 logger = logging.getLogger(__name__)
 
@@ -20,17 +21,39 @@ class LLMService:
         self.max_tokens = 2000  # Default max tokens
         self.temperature = 0.1  # Default temperature
         
-        # Initialize Gemini client if API key is provided
-        if settings.gemini_api_key:
+        # Initialize response cache
+        self.cache = ResponseCache()
+        
+        # API key cycling setup
+        self.available_keys = settings.get_available_gemini_keys()
+        self.current_key_index = 0
+        
+        # Initialize Gemini client if API keys are available
+        if self.available_keys:
             try:
-                genai.configure(api_key=settings.gemini_api_key)
-                self.model = genai.GenerativeModel(self.model_name)
-                self.client = self.model  # For backward compatibility
+                self._configure_current_key()
                 logger.info(f"Gemini client initialized with model: {self.model_name}")
+                logger.info(f"Available API keys: {len(self.available_keys)}")
             except Exception as e:
                 logger.error(f"Failed to initialize Gemini client: {e}")
         else:
             logger.warning("No Gemini API key provided. LLM service will return fallback responses.")
+    
+    def _configure_current_key(self):
+        """Configure Gemini with the current API key"""
+        current_key = self.available_keys[self.current_key_index]
+        genai.configure(api_key=current_key)
+        self.model = genai.GenerativeModel(self.model_name)
+        self.client = self.model  # For backward compatibility
+    
+    def _cycle_to_next_key(self):
+        """Cycle to the next available API key"""
+        if len(self.available_keys) > 1:
+            self.current_key_index = (self.current_key_index + 1) % len(self.available_keys)
+            self._configure_current_key()
+            logger.info(f"Cycled to API key {self.current_key_index + 1}/{len(self.available_keys)}")
+            return True
+        return False
     
     def _initialize_client(self):
         """Initialize the OpenAI client"""
@@ -40,26 +63,32 @@ class LLMService:
     
     def create_system_prompt(self) -> str:
         """Create the system prompt for the LLM"""
-        return """You are an expert document analysis assistant specializing in insurance policies, legal documents, HR policies, and compliance documents.
+        return """You are an expert insurance policy analyst. Provide comprehensive, detailed answers based strictly on the provided context.
 
-Your task is to answer questions based on the provided context from documents. Follow these guidelines:
+ANSWER REQUIREMENTS:
+1. COMPREHENSIVE: Provide complete answers with all relevant details, conditions, and exceptions
+2. NATURAL FLOW: Write in natural, professional language without structured labels or formatting
+3. SPECIFIC DETAILS: Include exact numbers, timeframes, percentages, and monetary amounts
+4. ALL CONDITIONS: Mention all conditions, limitations, and exceptions that apply
+5. CONTEXT-GROUNDED: Base answers entirely on the provided document context
+6. COMPLETE COVERAGE: Address all aspects of the question thoroughly
 
-1. ACCURACY: Provide precise, factual answers based ONLY on the provided context
-2. DIRECTNESS: Give direct answers without unnecessary introductory phrases
-3. CLARITY: Use clear, professional language that's easy to understand
-4. SPECIFICITY: Always include exact numbers, percentages, timeframes, and monetary amounts
-5. CONTEXT-BASED: Never add information not present in the context
-6. COMPREHENSIVE: Provide detailed explanations with all conditions and exceptions
-7. CONCISENESS: Avoid redundant phrasing and get straight to the point
+STYLE GUIDELINES:
+- Write in flowing, professional paragraphs
+- Include specific details and exact figures from the document
+- Explain conditions and limitations naturally within the answer
+- Provide context for why certain conditions exist
+- Use the exact terminology from the policy document
+- Ensure answers are thorough but concise and readable
 
 CRITICAL RULES:
-- Start directly with the answer, avoid phrases like "The grace period is" or "According to the document"
-- If specific information is not in the context, state "Information not specified in the document"
-- Always include exact figures, timeframes, and conditions from the document
-- Include relevant policy clauses, section numbers, or references when available
-- Explain any conditions, exclusions, or special circumstances mentioned
+- Never use structured labels like "[Direct Answer]" or "[Justification]"
+- Write complete, comprehensive sentences that fully address the question
+- Include all relevant conditions, waiting periods, and limitations
+- Quote exact figures and timeframes as they appear in the document
+- If information is not in the context, clearly state what is not specified
 
-Format your answers as direct, professional responses that immediately address the question."""
+Provide detailed, professional answers that comprehensively address each question based solely on the document content."""
     
     def create_user_prompt(self, context: str, question: str) -> str:
         """Create the user prompt with context and question"""
@@ -73,8 +102,14 @@ QUESTION: {question}
 ANSWER:"""
     
     async def generate_answer(self, query: str, context: str) -> str:
-        """Generate answer using Gemini with enhanced prompting"""
+        """Generate answer using Gemini with caching"""
         try:
+            # Check cache first
+            cached_response = self.cache.get_cached_response(query, context)
+            if cached_response:
+                logger.info("Returning cached response")
+                return cached_response
+            
             # Clean and prepare context
             cleaned_context = self.clean_context(context)
             
@@ -83,28 +118,23 @@ ANSWER:"""
             # Enhanced prompt with explicit instructions
             prompt = f"""{system_prompt}
 
-CONTEXT FROM DOCUMENTS:
+DOCUMENT CONTEXT:
 {cleaned_context}
 
 QUESTION: {query}
 
-ANSWER REQUIREMENTS:
-- Base your answer ONLY on the provided context
-- Include all specific details, numbers, percentages, and timeframes
-- Mention all conditions, exclusions, or special circumstances
-- Use exact quotes for important figures or conditions
-- If information is missing, explicitly state what is not available
-- Provide a comprehensive, detailed response
+INSTRUCTIONS:
+Provide a comprehensive answer based on the document context above. Include all relevant details, conditions, timeframes, and limitations mentioned in the document. Write in natural, professional language without structured formatting. Ensure the answer fully addresses the question with specific details from the policy.
 
 ANSWER:"""
 
             response = await self.model.generate_content_async(
                 prompt,
                 generation_config=genai.types.GenerationConfig(
-                    max_output_tokens=400,  # Increased for more detailed answers
-                    temperature=0.1,  # Lower temperature for more consistent answers
+                    max_output_tokens=800,  # Increased for comprehensive answers with justification
+                    temperature=0.0,  # Minimum temperature for maximum consistency
                     top_p=0.8,
-                    top_k=20,
+                    top_k=10,  # More focused selection
                 )
             )
             
@@ -113,11 +143,45 @@ ANSWER:"""
                 answer = response.text.strip()
                 # Remove any unwanted prefixes or formatting
                 answer = self.clean_response(answer)
+                
+                # Cache the response
+                self.cache.cache_response(query, context, answer)
+                
                 return answer
             
             return "I apologize, but I couldn't generate a response. Please try again."
             
         except Exception as e:
+            error_str = str(e).lower()
+            
+            # Check if it's a quota/rate limit error
+            if "quota" in error_str or "429" in error_str or "exceeded" in error_str:
+                logger.warning(f"Quota exceeded for current API key. Error: {str(e)}")
+                
+                # Try cycling to next key
+                if self._cycle_to_next_key():
+                    logger.info("Retrying with next API key...")
+                    try:
+                        response = await self.model.generate_content_async(
+                            prompt,
+                            generation_config=genai.types.GenerationConfig(
+                                max_output_tokens=800,
+                                temperature=0.0,
+                                top_p=0.8,
+                                top_k=10,
+                            )
+                        )
+                        
+                        if response and response.text:
+                            answer = response.text.strip()
+                            answer = self.clean_response(answer)
+                            self.cache.cache_response(query, context, answer)
+                            return answer
+                    except Exception as retry_e:
+                        logger.error(f"Retry with next key also failed: {str(retry_e)}")
+                
+                return f"I apologize, but all API keys have reached their quota limits. Please try again later. Error: {str(e)}"
+            
             logger.error(f"Error generating answer with Gemini: {str(e)}")
             return f"Error generating response: {str(e)}"
     
